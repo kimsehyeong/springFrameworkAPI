@@ -17,7 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"> 
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fefc41acd5be31226ac1be47352506ca"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=95a0a748cff0cbf164186a7deb7d4cb1"></script>
   <script type="text/javascript">
   $(document).ready(function(){
   	var result='${result}';     	
@@ -89,6 +89,8 @@
   		
   		minLength : 1    		
   	});
+  	
+  	
   	// 지도 mapBtn 클릭시 지도가 보이도록 하기
   	$("#mapBtn").click(function(){
   		var address=$("#address").val();
@@ -96,9 +98,10 @@
   			alert("주소를 입력하세요");
   			return false;
   		}
+  		
   		$.ajax({
   			url : "https://dapi.kakao.com/v2/local/search/address.json",
-  			headers : {"Authorization": "KakaoAK 260bf790c4b9969507dd7511de7de3ba"},
+  			headers : {"Authorization": "KakaoAK 3165cb32adc1ebbfc3dfdba44f69df64"},
   			type : "get",
   			data : {"query" : address},
   			dataType : "json",
@@ -143,6 +146,7 @@
   	 bList+="</table>";
   	 $("#bookList").html(bList);
    }
+   
    function mapView(data){
 	 var x=data.documents[0].x; // 경도
 	 var y=data.documents[0].y; // 위도
@@ -164,6 +168,7 @@
      
   	// 마커가 지도 위에 표시되도록 설정합니다
   	marker.setMap(map);
+  	
   	// 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
   	var iwContent = '<div style="padding:5px;">${mvo.memName}</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
   	    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
